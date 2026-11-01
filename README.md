@@ -15,11 +15,17 @@ A personal summer project where I built the electronics for an RC car around an 
 
 ## Hardware
 - ESP32 DevKit (original ESP32: the PS4 controller needs Bluetooth Classic, which the C3/C6/S3 don't have)
-- RC car chassis with an ESC and drive motor
-- Steering servo
+- Brushless motor and brushless ESC (with cooling fan)
+- LiPo battery pack (XT60 connectors)
+- Metal-gear steering servo
+- 3D-printed chassis
 - PS4 DualShock 4 controller
 
-<!-- Add a photo of the car here, e.g. ![RC Car](docs/car.jpg) -->
+![Car chassis, shown from above with the rear wheels fitted](docs/car.jpg)
+*The car from above: steering servo (left), LiPo pack (centre), and ESC and brushless motor driving the rear axle (right). Only the rear wheels were fitted for this photo.*
+
+![Bench test of the circuit](docs/circuit.jpg)
+*Bench test of the circuit: ESP32 on a breadboard driving the ESC and brushless motor (left) and the steering servo (right), with the LiPo pack at the back.*
 
 ## How it Works
 The firmware is written in the Arduino IDE using the [Bluepad32](https://github.com/ricardoquesada/bluepad32) and [ESP32Servo](https://github.com/madhephaestus/ESP32Servo) libraries.

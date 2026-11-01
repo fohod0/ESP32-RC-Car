@@ -15,11 +15,17 @@ A personal summer project where I built the electronics for an RC car around an 
 
 ## Hardware
 - ESP32 DevKit (original ESP32: the PS4 controller needs Bluetooth Classic, which the C3/C6/S3 don't have)
-- RC car chassis with an ESC and drive motor
-- Steering servo
+- Brushless motor and brushless ESC (with cooling fan)
+- 7.4 V LiPo battery pack (XT60 connectors)
+- Metal-gear steering servo
+- 3D-printed chassis
 - PS4 DualShock 4 controller
 
-<!-- Add a photo of the car here, e.g. ![RC Car](docs/car.jpg) -->
+![Car chassis, shown from above with the rear wheels fitted](docs/car.jpg)
+*The car from above: steering servo (left), LiPo pack (centre), and ESC and brushless motor driving the rear axle (right). Only the rear wheels were fitted for this photo.*
+
+![Bench test of the circuit](docs/circuit.jpg)
+*Bench test of the circuit: ESP32 on a breadboard driving the ESC and brushless motor (left) and the steering servo (right), with the LiPo pack at the back.*
 
 ## How it Works
 The firmware is written in the Arduino IDE using the [Bluepad32](https://github.com/ricardoquesada/bluepad32) and [ESP32Servo](https://github.com/madhephaestus/ESP32Servo) libraries.
@@ -42,7 +48,7 @@ The stick and triggers have small deadzones (30 and 20) to filter out drift, and
 | ESC signal | 13 |
 | Servo / ESC ground | GND (common ground with the ESP32) |
 
-The ESC and brushless motor are powered by a 7.4 LiPo Battery and the ESC's Battery Eliminator Circuit (BEC) was used to step down the voltage to power the ESP32 and the servo.
+The ESC and brushless motor are powered by a 7.4 V LiPo battery, and the ESC's Battery Eliminator Circuit (BEC) was used to step down the voltage to power the ESP32 and the servo.
 The servo, ESC and ESP32 must share a common ground.
 
 ## Getting Started
@@ -68,7 +74,7 @@ The servo, ESC and ESP32 must share a common ground.
 ## Key Challenges
 The main challenge was getting the ESC to arm reliably. The ESC only arms once it sees a steady neutral signal at the right frequency, so the servo and ESC outputs are both locked to 50 Hz, and the firmware holds a 1500 µs neutral pulse for 3 seconds at boot before it accepts any controller input. The same neutral value is sent whenever the controller isn't connected, so the ESC stays armed and the car can't creep.
 
-The other challenge was powering the esp32 and the servo, I ultimately went from a more complicated design using a buck converter to a less complicated one using the BEC to power the esp32 and the servo.
+The other challenge was powering the ESP32 and the servo. I ultimately went from a more complicated design using a buck converter to a less complicated one using the BEC to power the ESP32 and the servo.
 
 ## Licence
 MIT. See [LICENSE](LICENSE).
